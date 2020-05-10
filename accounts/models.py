@@ -1,39 +1,38 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
-class Acount(models.Model):
+class Account(models.Model):
 
-    name = models.CharField(
-        _('name'),
-        max_length=70,
-    )
-
-    last_name = models.CharField(
-        _('last_name'),
-        max_length=70,
-    )
-
-    username = models.CharField(
-        _('username'),
-        max_length=35,
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     birth_date = models.DateField(
         _('birth_date'),
-    )
-
-    email = models.EmailField(
-        _('username'),
-        max_length=100,
+        null=True,
     )
 
     avatar = models.ImageField(
         _('avatar'),
-        required=False,
+        blank=True,
+        null=True,
     )
 
     facebook_url = models.URLField(
         _('facebook'),
-        required=False,
+        blank=True,
+        null=True,
     )
+
+    class Meta:
+        verbose_name = ('account')
+        verbose_name_plural = ('accounts')
+
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Account.objects.create(user=instance)
+    instance.account.save()
