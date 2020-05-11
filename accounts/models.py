@@ -26,6 +26,15 @@ class Account(models.Model):
         null=True,
     )
 
+    subscription = models.IntegerField(
+        default=0,
+    )
+
+    email_confirmed = models.BooleanField(
+        default=False,
+    )
+
+
     class Meta:
         verbose_name = ('account')
         verbose_name_plural = ('accounts')

@@ -128,6 +128,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR + "/Templates", 'static')
+
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '679b3b9571a0a6'
+EMAIL_HOST_PASSWORD = '0d0f1f07029724'
+EMAIL_PORT = '2525'
