@@ -34,7 +34,6 @@ class Account(models.Model):
         default=False,
     )
 
-
     class Meta:
         verbose_name = ('account')
         verbose_name_plural = ('accounts')
@@ -45,3 +44,10 @@ def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Account.objects.create(user=instance)
     instance.account.save()
+
+
+class SubscriptionActive(models.Model):
+    is_active = models.BooleanField(
+        default=False,
+    )
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
