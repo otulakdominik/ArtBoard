@@ -1,22 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}DD{% endblock %}</title>
-  </head>
-  <body>
-    <header>
-      <h1>My Site</h1>
-      {% if user.is_authenticated %}
-        <a href="{% url 'accounts:logout' %}">logout</a>
-      {% else %}
-        <a href="{% url 'accounts:login' %}">login</a> / <a href="{% url 'accounts:signup' %}">signup</a>
-      {% endif %}
-      <hr>
-    </header>
-    <main>
-      {% block content %}
-      {% endblock %}
-    </main>
-  </body>
-</html>
+{% extends "ArtBoard/base.html" %}
+{% block content %}
+  <div id="slider">
+    <slider>
+        <slide></slide>
+        <slide></slide>
+        <slide></slide>
+        <slide></slide>
+    </slider>
+  </div>
+  <section>
+    <article id="welcome">
+      Welcome to our page.
+      <p>gfdgdfgdfgdfgdfgdfgdfgfdfgdfgfdgfdgdfgfdfgfdgdffgdfg</p>
+    </article>
+    <div id="options">
+      <a href="#topPhotos" id="o1"> Top Photos </a>  
+      <a href="#topAuthors" id="o2"> Top Authors </a>
+    </div>
+    <article id="about">
+      <div class="backWord">
+      </div>
+      <div id="text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae ipsum lacus. Vivamus consequat velit laoreet ultrices ultrices. Classsssss aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sed ultricies ipsum. Morbi diam metus, tempor vestibulum erat vitae, ultrices pharetra eros. Nam pulvinar dolor id ipsum dictum vulputate. Nulla venenatis imperdiet ligula ut luctus. In ultrices turpis id nisl faucibus, sed tincidunt augue semper. Nullam congue pulvinar sapien, eget cursus massa feugiat nec. Vivamus ut porttitor lectus.
+      </div>
+    </article>
+    <article id="topPhotos">
+      <div id="backWord2"></div>
+      <div id="photos"></div>
+    </article>
+    <article id="topAuthors">
+      
+    </article>
+
+
+
+
+  </section>
+
+
+
+{% endblock content %}

@@ -1,17 +1,103 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>{% block title %}dddx{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/flie.js' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+    <title>ArtBorad</title>
   </head>
   <body>
-    <header>
-      <h1>My Site</h1>
-      <hr>
-    </header>
-    <main>
-      {% block content %}
-      {% endblock %}
-    </main>
+    <nav id="menu-area">
+      <a href="#">
+      <div class="logo">
+        <img src="{% static 'images/logo.svg' %}">
+      </div>
+      </a>
+      <div id="toolBar">
+        <div class="menu-wrap">
+          <input type="checkbox" class="toggler">
+          <div id="hamburger"><div id="burger1"></div></div>
+          <div class="menu">
+            <div>
+              <div>
+                <ul>
+                  <li class="movingPoint"><a href="#">Home
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </a></li>
+                  <li class="movingPoint"><a href="#about">About
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </a></li>
+                  <li class="movingPoint"><a href="#">Services
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </a></li>
+                  <li class="movingPoint"><a href="#">Contact
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="person">
+        <i id="icon1" class="fas fa-user"></i>
+      </div>
+      <div class="bestNav">
+        <a href="#topPhotos" > Top Photos
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+        <a href="#topAuthors" > Top Authors
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+    </nav>
+    {% block content %}
+    
+    {% endblock %}
+    <footer>
+      <div id="footerText">
+       ArtBorad~project 	&copy;
+      </div>
+    </footer>
+    <script>
+      window.addEventListener("scroll", function() {
+      let menuArea = this.document.getElementById('menu-area');
+      if(window.pageYOffset > 617){
+          menuArea.classList.add("cus-nav");
+          $("#hamburger").children().css({"backgroundColor": "black"});
+          document.getElementById("icon1").style.color = "black";
+      }
+      else{
+          menuArea.classList.remove("cus-nav");
+          $("#hamburger").children().css({"backgroundColor": "white"});
+          document.getElementById("icon1").style.color = "white";
+      }
+  });
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/a624336c34.js" crossorigin="anonymous"></script>
   </body>
 </html>
