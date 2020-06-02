@@ -224,6 +224,7 @@ footer {
     width: 10.7vw;
     text-align: left;
     float: left;
+    padding-right: 0.2vw;
 }
 .logo img{
     height: 4vw;
@@ -539,13 +540,10 @@ footer {
 
 /* Transition bar */
 #menu-area.cus-nav{
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.75);
   z-index: 999;
   -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
     -o-transition: all 0.2s linear;
     transition: all 0.2s linear;
-}
-#menu-area.cus-nav .bestNav a{
-  color: black;
 }
