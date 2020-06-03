@@ -1,21 +1,68 @@
-{% extends 'ArtBoard/base.html' %}
-
-{% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/styleRegister.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+  {% block content %}
+    <div id="box">
+      <p> Sign up </p>
+      {% csrf_token %}
+      {% for field in form %}
         {% for error in field.errors %}
           <p style="color: red">{{ error }}</p>
         {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
+        {% if field.name == "username" %}
+          <div class="options">
+            <i class="fas fa-user"></i>
+            {{ field }}
+          </div>
+        {% endif %}
+        {% if field.name == "email" %}
+          <div class="options">
+            <i class="fas fa-envelope"></i>
+            {{ field }}
+          </div>
+        {% endif %}
+        {% if field.name == "password1" %}
+          <div class="options">
+            <i class="fas fa-lock"></i>
+            {{ field }}
+          </div>
+      {% endif %}
+      {% if field.name == "password2" %}
+        <div class="options">
+          <i class="fas fa-lock" style="color: gray;"></i>
+          {{ field }}
+        </div>
+      {% endif %}
+      {% if field.name == "first_name" %}
+        <div  class="options1">
+        {{ field }}
+      </div>
+      {% endif %}
+      {% if field.name == "last_name" %}
+       <div  class="options1">
+          {{ field }}
+        </div>
+      {% endif %}
+      {% if field.name == "birth_date" %}
+      <div  class="options1" >
+         {{ field }}
+       </div>
+      {% endif %}
+
+      {% endfor %}
+      <button id="btn" type="submit">Sign up</button>
+      <div id="btn2">Have already any account: <a href="{% url 'accounts:login' %}">Log in here</a> </div>
+    </div>
+
+
+
 {% endblock %}
+<script src="https://kit.fontawesome.com/a624336c34.js" crossorigin="anonymous"></script>
+  </body>
