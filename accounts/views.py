@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import (render, redirect, HttpResponse,
+                              get_object_or_404, reverse, get_list_or_404, Http404)
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.sites.shortcuts import get_current_site
@@ -6,8 +7,10 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 
+
 from .forms import SignUpForm
 from .tokens import account_activation_token
+from .models import Post
 
 
 def signup(request):
@@ -56,3 +59,21 @@ def activate(request, uidb64, token):
         return redirect('home')
     else:
         return render(request, 'accounts/email/account_activation_invalid.html')
+
+
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+
+    if request.user.username != user.username:
+        raise Http404
+
+    elif request.user.username != user.username:
+        user_posts = Post.objects.filter(author=request.user).order_by('created')
+
+    else:
+        user_posts = Post.objects.filter(author=request.user).order_by('created')
+
+    #posts = paginate_result(request, user_posts, 15)
+
+    return render(request, 'accounts/profile.html',
+                   {'user': user, 'posts': user_posts})

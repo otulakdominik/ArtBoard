@@ -26,7 +26,14 @@ class Account(models.Model):
         null=True,
     )
 
+    bio = models.TextField(
+        _('bio'),
+        blank=True,
+        null=True,
+    )
+
     subscription = models.IntegerField(
+        _('subscription'),
         default=0,
     )
 
@@ -47,8 +54,8 @@ def update_user_profile(sender, instance, created, **kwargs):
 
 
 class Followers(models.Model):
-    user_from = models.ForeignKey(User, related_name='rel_from_set')
-    user_to = models.ForeignKey(User, related_name='rel_to_set')
+    user_from = models.ForeignKey(User, related_name='rel_from_set', on_delete=models.CASCADE)
+    user_to = models.ForeignKey(User, related_name='rel_to_set', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, db_index=True)
 
     class Meta:
@@ -88,8 +95,6 @@ class Post(models.Model):
         auto_now_add=True,
     )
 
-    hashtag = models.ManyToManyField(Hashtag, blank=True)
-
     class Meta:
         verbose_name = _('post')
         verbose_name_plural = _('posts')
@@ -101,8 +106,10 @@ class Post(models.Model):
 class Hashtag(models.Model):
     name = models.CharField(
         _('Hashtag'),
+        unique=True,
         max_length=30,
     )
+    post = models.ManyToManyField(Post, blank=True)
 
     class Meta:
         verbose_name = _('hashtag')
@@ -116,9 +123,9 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     reply = models.ForeignKey('Comment', null=True, related_name='replies', on_delete=models.CASCADE)
-    likes = models.ManyToManyField(User, related_name='likes', blank=True)
+    likes = models.ManyToManyField(User, related_name='likes_comments', blank=True)
 
-    dislikes = models.ManyToManyField(User, related_name='dislikes', blank=True)
+    dislikes = models.ManyToManyField(User, related_name='dislikes_comments', blank=True)
     description = models.TextField(
         _('description'),
     )
