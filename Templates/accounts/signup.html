@@ -40,23 +40,38 @@
           {{ field }}
         </div>
       {% endif %}
-      {% if field.name == "first_name" %}
-        <div  class="options1">
-        {{ field }}
-      </div>
-      {% endif %}
-      {% if field.name == "last_name" %}
-       <div  class="options1">
+        {% if field.name == "first_name" %}
+          <div  class="options1">
           {{ field }}
         </div>
-      {% endif %}
-      {% if field.name == "birth_date" %}
-      <div  class="options1" >
-         {{ field }}
-       </div>
-      {% endif %}
-
+        {% endif %}
+        {% if field.name == "last_name" %}
+        <div  class="options1">
+            {{ field }}
+          </div>
+        {% endif %}
+        {% if field.name == "birth_date" %}
+        <div  class="options1" >
+          {{ field }}
+        </div>
+        {% endif %}
+        {% if field.name == "avatar" %}
+        <div  class="options2" >
+          {{ field }}
+        </div>
+        {% endif %}
+        {% if field.name == "facebook_url" %}
+        <div  class="options2" >
+          {{ field }}
+        </div>
+        {% endif %}
       {% endfor %}
+      <div id="formatIcons">
+        <i class="fab fa-facebook"></i>
+        <i class="far fa-user-circle"></i>
+      </div>
+      <div id="arrow"><i id="arrow-icon" class="fas fa-angle-double-down"></i></div>
+
       <button id="btn" type="submit">Sign up</button>
       <div id="btn2">Have already any account: <a href="{% url 'accounts:login' %}">Log in here</a> </div>
     </div>
@@ -65,4 +80,6 @@
 
 {% endblock %}
 <script src="https://kit.fontawesome.com/a624336c34.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script src="{% static 'js/signUp.js' %}"></script>
   </body>
