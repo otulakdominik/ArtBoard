@@ -41,7 +41,7 @@
         </div>
       {% endif %}
         {% if field.name == "first_name" %}
-          <div  class="options1">
+          <div class="options1">
           {{ field }}
         </div>
         {% endif %}
@@ -56,13 +56,17 @@
         </div>
         {% endif %}
         {% if field.name == "avatar" %}
-        <div  class="options2" >
+        <div  id="options2" >
+          <span>Enter your Avatar icon here: </span>
           {{ field }}
+          <i id="ok1" class="far fa-check-circle"></i>
         </div>
         {% endif %}
         {% if field.name == "facebook_url" %}
-        <div  class="options2" >
+        <div  id="options3" >
+          <span>Enter your Facebook URL code:</span>
           {{ field }}
+          <i id="ok2" class="far fa-check-circle"></i>
         </div>
         {% endif %}
       {% endfor %}

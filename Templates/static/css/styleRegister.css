@@ -116,9 +116,95 @@ i{
   color: #225678;
   transition: ease-in 0.1s;
 }
-.options2{
+
+
+/*avatar icon input*/
+
+#options2{
   display: none;
+  width: 100vw;
+  height: 100vw;
+  background-color: rgba(	205, 204, 206, 0.8);
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
+#options2 input{
+  background-color: #363636;
+  color: white;
+  font-size: 2vw;
+  text-align: center;
+  margin-top: 2vw;
+  width: 28vw;
+  height: 2.6vw;
+  outline: none;
+  border: none;
+  border-radius: 30vw;
+}
+#options2 span{
+  text-shadow: 0.2vw 0.2vw rgba(36, 36, 36, 0.1);
+  color: black;
+  margin-top: 10vw;
+  display: block;
+  font-size: 2vw;
+}
+#options2 i{
+  display: block;
+  padding-top: 1.35vw;
+  font-size: 5vw;
+}
+#options2 i:hover{
+  color: green;
+  font-size: 5.2vw;
+  padding-top: 1.20vw;
+}
+
+
+/*facebook url code input*/
+
+#options3{
+  display: none;
+  width: 100vw;
+  height: 100vw;
+  background-color: rgba(	205, 204, 206, 0.8);
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+#options3 input{
+  background-color: #363636;
+  color: white;
+  font-size: 2vw;
+  text-align: center;
+  margin-top: 2vw;
+  width: 26vw;
+  height: 3vw;
+  outline: none;
+  border: none;
+  border-radius: 30vw;
+
+}
+#options3 span{
+  text-shadow: 0.2vw 0.2vw rgba(36, 36, 36, 0.1);
+  color: black;
+  margin-top: 10vw;
+  display: block;
+  font-size: 2vw;
+}
+#options3 i{
+  display: block;
+  padding-top: 1.35vw;
+  font-size: 5vw;
+}
+#options3 i:hover{
+  color: green;
+  font-size: 5.2vw;
+  padding-top: 1.20vw;
+}
+
+
 #formatIcons{
   margin-top: 0.5vw;
   display: none;
