@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from .models import Post
+
 
 class SignUpForm(UserCreationForm):
     birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
@@ -23,4 +25,14 @@ class SignUpForm(UserCreationForm):
             'birth_date',
             'avatar',
             'facebook_url',
+        )
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = (
+            'title',
+            'picture',
+            'body',
         )

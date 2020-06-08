@@ -1,7 +1,7 @@
 from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 
-from .views import signup, account_activation_sent, activate, profile
+from .views import signup, account_activation_sent, activate, profile, post_create
 
 app_name = 'accounts'
 
@@ -13,4 +13,5 @@ urlpatterns = [
     re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         activate, name='activate'),
     re_path(r'^profile/(?P<username>\w+)/$', profile, name='profile'),
+    re_path(r'^post_create/$', post_create, name='post_create'),
 ]

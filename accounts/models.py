@@ -3,6 +3,9 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models.signals import pre_save
+from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Account(models.Model):
@@ -76,6 +79,10 @@ class Post(models.Model):
         max_length=50,
     )
 
+    body = models.TextField(
+        _('body'),
+    )
+
     slug = models.SlugField(
         _('slug'),
         max_length=120,
@@ -96,13 +103,27 @@ class Post(models.Model):
     )
 
     class Meta:
+        ordering = ['-id']
         verbose_name = _('post')
         verbose_name_plural = _('posts')
 
     def __str__(self):
         return self.title
 
+    def total_likes(self):
+        return self.likes.count()
 
+    def total_dislikes(self):
+        return self.dislikes.count()
+
+    def get_absolute_url(self):
+        return reverse("accounts:post_detail", args=[self.id, self.slug])
+
+@receiver(pre_save, sender=Post)
+def pre_save_slug(sender, **kwargs):
+    slug = slugify(kwargs['instance'].title)
+    kwargs['instance'].slug = slug
+"""
 class Hashtag(models.Model):
     name = models.CharField(
         _('Hashtag'),
@@ -117,7 +138,7 @@ class Hashtag(models.Model):
 
     def __str__(self):
         return self.name
-
+"""
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

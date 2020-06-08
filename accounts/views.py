@@ -8,7 +8,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 
 
-from .forms import SignUpForm
+from .forms import SignUpForm, PostForm
 from .tokens import account_activation_token
 from .models import Post
 
@@ -65,9 +65,6 @@ def profile(request, username):
     user = get_object_or_404(User, username=username)
 
     if request.user.username != user.username:
-        raise Http404
-
-    elif request.user.username != user.username:
         user_posts = Post.objects.filter(author=request.user).order_by('created')
 
     else:
@@ -77,3 +74,18 @@ def profile(request, username):
 
     return render(request, 'accounts/profile.html',
                    {'user': user, 'posts': user_posts})
+
+
+def post_create(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+    else:
+        form = PostForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/post_create.html', context)
